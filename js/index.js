@@ -432,7 +432,7 @@ function showSermonDescription(e) {
 
 // loads the topics list 
 function loadTopics() {
-    var apiUrl = 'https://vincentw.org/siapi/topic/_sermonindex.json';
+    var apiUrl = 'https://sermonindex.vincentw.org/siapi/topic/_sermonindex.json';
     var options = {
         headers: {
             "Content-Type": "application/json"
@@ -464,7 +464,7 @@ function loadTopics() {
 //loads the speakers list
 function loadSpeakers()
 {
-    var apiUrl = 'https://vincentw.org/siapi/speaker/_sermonindex.json';
+    var apiUrl = 'https://sermonindex.vincentw.org/siapi/speaker/_sermonindex.json';
     var options = {
         headers: {
             "Content-Type": "application/json"
@@ -698,7 +698,7 @@ function loadSermons(e) {
             logger.info(`loadSermons->speakerFolder ${ speakerFolder }`)
 
             //speakerFolder = sermonbasepath + speaker + "/";
-            apiUrl = 'https://vincentw.org/siapi/speaker/' + speaker + ".json";
+            apiUrl = 'https://sermonindex.vincentw.org/siapi/speaker/' + speaker + ".json";
             console.log(apiUrl);
             logger.info('loadSermons()->Fetching sermons using sermonindex API for speaker >' + speakerName);
             $("#spanPlayAlert").html(spinnerIcon + " Loading Sermons of  > " + speakerName);
@@ -707,7 +707,7 @@ function loadSermons(e) {
         case "Topics":
             var topic = e.currentTarget.attributes['data-topic'].value;
             var topicName = e.currentTarget.innerText;
-            var apiUrl = 'https://vincentw.org/siapi/topic/' + topic + '.json';
+            var apiUrl = 'https://sermonindex.vincentw.org/siapi/topic/' + topic + '.json';
             console.log(apiUrl);
             logger.info('loadSermons()->Fetching sermons using sermonindex API for speaker >' + speakerName);
             $("#spanPlayAlert").html(spinnerIcon + " Loading Sermons on  > " + topicName);
