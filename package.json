@@ -22,7 +22,6 @@
   "devDependencies": {
     "download": "^8.0.0",
     "electron": "^15.1.0",
-    "electron-installer-dmg": "^3.0.0",
     "electron-log": "^4.1.2",
     "electron-packager": "^15.4.0",
     "electron-winstaller": "^5.0.0",
