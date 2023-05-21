@@ -10,16 +10,6 @@ This project is developed to provide the easy app based navigation for all sermo
 
 
 
-### Running The App From sermonindex.net
-
-A step by step guide how to install this app
-
-```
-* Visit the sermonindex.net and go to Download section.
-* Choose the Operating System you want to download the installer for and click on download
-* Based on your operating system follow below steps further
-```
-
 ### Running App From Source
 
 #### For Windows/Linux/MacOS
