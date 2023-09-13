@@ -1,16 +1,19 @@
 /*
-Author      : Sherebiah Tisbi & Vincent L
-Date Written: 04/27/2020
+Author      : Sherebiah Tisbi, Vincent L, & wally-rblx
+Date Written: 03/21/2022
 Goal        : script pertains to index.html and caontains the code for almost entire app
 Change Log  : 05/09/2020 - MP3 duration for each download call
               05/18/2020 - Play All functionality
               05/20/2020 - code refactoring, open website externally, open pdf externally
+              05/21/2023 - downloadSermon now pulls from appropriate archive.org Urls 
 */
+
 const needle = require('needle');
 const download = require('download');
 const path = require('path')
 const os = require('os');
 const fs = require('fs');
+const nodeUrl = require('node:url');
 
 const logger = require('electron-log');
 const machine = require('child_process');
@@ -48,7 +51,7 @@ $(document).ready(function () {
     let basePath = window.localStorage.getItem('sermon-download-path')
     if (!basePath) {
         logger.info('No download path has been defined, setting to default...')
-        basePath = path.join(os.homedir(), 'Sermons')
+        basePath = path.join(os.homedir(), 'SermonIndex_Sermons')
         window.localStorage.setItem('sermon-download-path', basePath)
     }
 
@@ -665,8 +668,20 @@ function downloadSermon(url,folderpath,filename, rowindex, title)
     var options = { filename: filename }
     var sermonsFromTable; 
     logger.info('downloadSermon()');   
-    // $("#spanPlayAlert").html(spinnerIcon + " Started downloading > " + title);
-    download(url, folderpath, options)
+
+    logger.info(`Url=${url}`);
+    console.log(nodeUrl.parse(url));
+
+    // 5/21/23: Updated to fetch from archive.org due to Dropbox disabling downloads which the sermonindex api downloadurl redirects to
+    // We have to parse the old Url for the Sermon id and then we can just download it from archive.org
+
+    let urlMetadata = nodeUrl.parse(url)
+    let sermonId = urlMetadata.path.substring(1)
+    let downloadUrl = `https://archive.org/download/SERMONINDEX_${ sermonId }/${ sermonId }.mp3`
+
+    logger.info(`Attempting to download sermon! Url=${ downloadUrl }, SermonId=${ sermonId}, Path=${ folderpath }`)
+
+    download(downloadUrl, folderpath, options)
         .then((res) => {
             // $("#spanPlayAlert").html(successIcon + " Completed downloading > " + title);
             retObject = { downloaded: true, index: rowindex }
@@ -676,7 +691,10 @@ function downloadSermon(url,folderpath,filename, rowindex, title)
         .catch((err) => {
             $("#spanPlayAlert").html(failIcon + " Failed downloading > " + title);
             retObject = { downloaded: false, index: rowindex }
-            logger.info('downloadSermon()-> error occurred downloading sermon->' + filename);
+            
+            logger.info(`downloadSermon: Failed to download sermon ${ filename }! Url=${ url }, Err=${ err }`)
+
+            // logger.info('downloadSermon()-> error occurred downloading sermon->' + filename);
             q.reject(retObject);
         });    
     logger.info('downloadSermon()->Exited.');
@@ -965,7 +983,7 @@ function formattedSermonRow(sermon)
     }
     var html = "";
     html += "<tr>";
-    html += "<td class='text-center' data-sermontitle='" + sermontitle + "' data-downloadurl='" + sermon.download + "' data-filepath='" + sermonFilepath + "' data-speakerfolder='" + speakerFolder + "' data-filename='" + sermonFilename + "'>" + ficon + "</td>";
+    html += "<td class='text-center' data-sermontitle='" + sermontitle + "' data-downloadurl='" + sermon.url + "' data-filepath='" + sermonFilepath + "' data-speakerfolder='" + speakerFolder + "' data-filename='" + sermonFilename + "'>" + ficon + "</td>";
     if (currentTab == "Speakers") {
         html += "<td>" + sermon.topic + "</td>";
     } else {
