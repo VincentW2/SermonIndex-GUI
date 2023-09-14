@@ -6,12 +6,14 @@
   "main": "js/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "electron .",
+    "start": "electron-forge start",
     "package-linux": "electron-packager . SermonIndex-GUI --overwrite --asar --platform=linux --arch=x64 --icon=images/sermonindex-logo.png --out=release-builds",
     "create-debian-installer": "electron-installer-debian --overwrite --src release-builds/SermonIndex-GUI-linux-x64/ --arch amd64 --icon=images/sermonindex-logo.png --config debian.json",
     "package-mac": "electron-packager . SermonIndex-GUI --overwrite --platform=darwin --arch=x64 --out=release-builds --icon=images/sermonindex-logo.icns",
     "create-mac-installer": "electron-installer-dmg ./release-builds/SermonIndex-GUI-darwin-x64/SermonIndex-GUI.app SermonIndex-GUI --out=release-builds --overwrite --icon=images/sermonindex-logo.icns",
-    "package-win": "electron-packager . SermonIndex-GUI --overwrite --asar --icon=images/sermonindex-logo.ico --out=release-builds"
+    "package-win": "electron-packager . SermonIndex-GUI --overwrite --asar --icon=images/sermonindex-logo.ico --out=release-builds",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
   },
   "keywords": [
     "sermondownloader",
@@ -21,15 +23,19 @@
   "license": "ISC",
   "devDependencies": {
     "@electron-forge/cli": "^6.4.2",
+    "@electron-forge/maker-deb": "^6.4.2",
+    "@electron-forge/maker-rpm": "^6.4.2",
+    "@electron-forge/maker-squirrel": "^6.4.2",
+    "@electron-forge/maker-zip": "^6.4.2",
+    "@electron-forge/plugin-auto-unpack-natives": "^6.4.2",
     "download": "^8.0.0",
     "electron": "^26.2.1",
     "electron-log": "^4.1.2",
-    "electron-packager": "^17.1.2",
-    "electron-winstaller": "^5.0.0",
     "jquery": "^3.5.0"
   },
   "dependencies": {
     "electron-log": "^4.1.2",
+    "electron-squirrel-startup": "^1.0.0",
     "jquery": "^3.5.0",
     "needle": "^2.4.1"
   },
