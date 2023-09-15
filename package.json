@@ -14,7 +14,6 @@
     "package": "electron-forge package",
     "make": "electron-forge make",
     "postinstall": "electron-builder install-app-deps",
-    "build": "electron-builder --mac --windows --linux",
     "release": "electron-builder --mac --windows --linux --publish always"
   },
   "keywords": [
