@@ -2,6 +2,8 @@
 
 My personal fork of sermonindex downloader 2.0. Please feel free to take contributions from this repo and integrate it in the main repo.
 
+[![Build/release](https://github.com/VincentXE/SermonIndex-GUI/actions/workflows/build.yml/badge.svg)](https://github.com/VincentXE/SermonIndex-GUI/actions/workflows/build.yml)
+
 # SermonIndex-GUI
 
 This project is developed to provide the easy app based navigation for all sermons available on <a href="https://www.sermonindex.net">sermonindex</a>. The goal is to aid users to cate local copy of sermons by downloading them. User has choice to download single or all sermons of a desired speaker. This app is cross platform and should work seamlessly on Windows, MAcOS and Linux (debian) without any issues.
