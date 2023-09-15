@@ -8,6 +8,8 @@
     "test": "echo \"Error: no test specified\"",
     "start": "electron .",
     "postinstall": "electron-builder install-app-deps",
+    "build-win": "electron-builder --windows",
+    "build-mac": "electron-builder --macos",
     "release": "electron-builder --mac --windows --linux --publish always"
   },
   "keywords": [
@@ -26,6 +28,7 @@
   "dependencies": {
     "electron-log": "^4.1.2",
     "electron-squirrel-startup": "^1.0.0",
+    "download": "^8.0.0",
     "jquery": "^3.5.0",
     "needle": "^2.4.1"
   },
