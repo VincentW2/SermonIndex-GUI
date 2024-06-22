@@ -18,7 +18,7 @@ This project is developed to provide the easy app based navigation for all sermo
 
 Please have node.js installed from https://nodejs.dev/ or your local package repo
 ````
-git clone https://github.com/VincentXE/SermonIndex-GUI
+git clone https://github.com/VincentW2/SermonIndex-GUI
 cd SermonIndex-GUI
 npm install
 npm start
@@ -58,9 +58,6 @@ npm run create-debian-installer
 * [electron-packager](https://rometools.github.io/rome/) - to package the app
 * [electron-installer-dmg](https://rometools.github.io/rome/) - to create installer for MacOS
 * [jquery](https://rometools.github.io/rome/) - to perform DOM operations
-
-## Contributing
-> Under construction
 
 ## Authors
 
